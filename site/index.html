@@ -134,7 +134,7 @@ const P=[
  [8,'Botão ACESSO','Ao ser acionado, cada tecla passa a tocar um som distinto. É a primeira tecla da fileira frontal, amarela com o símbolo de acessibilidade e três pontos em relevo ao lado.','Fileira frontal, à esquerda · 150 × 42 mm'],
  [9,'Botão START','Seleciona o jogo no catálogo e inicia a partida.','Fileira frontal, ao centro · 150 × 42 mm'],
  [10,'Botão VOLTAR','Retorna à tela anterior.','Fileira frontal, à direita · 150 × 42 mm'],
- [11,'Pagamento por tempo','Maquininha de cartão que integra todos os meios de pagamento: débito, crédito, aproximação (NFC), PIX por QR e carteiras digitais. Paga-se pelo tempo de uso.','Maquininha no suporte à direita do avental, acima do vão livre'],
+ [11,'Pagamento por tempo','Maquininha de cartão que integra todos os meios de pagamento: débito, crédito, aproximação (NFC), PIX por QR e carteiras digitais. Paga-se pelo tempo de uso.','Suporte na lateral direita, a 600 mm do piso: abaixo e fora do painel, longe do soco e dos botões, e ao alcance de quem está sentado'],
  [12,'Vão livre (cadeira de rodas)','Vão aberto sob o painel para quem usa cadeira de rodas entrar com as pernas e chegar de frente aos controles. Painel a 850 mm do piso.','740 mm de altura · 500 mm de profundidade (NBR 9050: mín. 730 × 500)'],
  [13,'Sensor de soco','Ponto de soco integrado ao painel. A intensidade do golpe ativa combos no jogo.','Ø160 · EVA 45 mm, chapa de aço 8 mm, célula de carga 200 kg'],
  [14,'Alavanca de premiação','Quando o tempo pago (1 minuto) acaba, a tela vira um caça-níquel: puxe a alavanca da lateral direita e, se os três símbolos baterem, ganha +1 minuto e continua a partida.','Lateral direita · curso para a frente'],
@@ -374,8 +374,8 @@ const tPos=tex(340,680,(g,w,h)=>{g.fillStyle='#22252c';g.fillRect(0,0,w,h);
  g.fillStyle='#fff';g.font='bold 19px '+MONO;['APROXIME, INSIRA','OU PASSE O CARTÃO','PIX QR · CARTEIRAS'].forEach((t,i)=>g.fillText(t,w/2,148+i*34));
  ['1','2','3','4','5','6','7','8','9','*','0','#'].forEach((k,i)=>{const x=40+(i%3)*92,y=306+((i/3)|0)*72;rr(g,x,y,76,56,10);g.fillStyle='#d9dbe0';g.fill();g.fillStyle='#22252c';g.font='bold 30px '+MONO;g.fillText(k,x+38,y+30);});
  [['#e5333d','X'],['#f8d313','<'],['#1f9d55','OK']].forEach(([c,t],i)=>{const x=40+i*92,y=602;rr(g,x,y,76,56,10);g.fillStyle=c;g.fill();g.fillStyle='#fff';g.font='bold 26px '+MONO;g.fillText(t,x+38,y+30);});});
-box(130,24,110,mDark,320,763,955);
-const pos=mark(new T.Group(),11);pos.position.set(320,775,975);pos.rotation.x=-.45;root.add(pos);
+box(110,20,110,mDark,475,590,875);box(20,60,110,mDark,425,560,875);
+const pos=mark(new T.Group(),11);pos.position.set(475,600,895);pos.rotation.x=-.45;root.add(pos);
 box(85,170,40,S({color:0x2a2d35,roughness:.5}),0,85,0,pos);
 const posF=new T.Mesh(new T.PlaneGeometry(85,170),new T.MeshBasicMaterial({map:tPos}));posF.position.set(0,85,20.3);pos.add(posF);
 box(64,5,12,mDark,0,171,-6,pos);box(60,3,3,mRubber,0,-6,-8,pos);
