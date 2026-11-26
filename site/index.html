@@ -429,46 +429,6 @@ const ge=new T.LineSegments(new T.EdgesGeometry(new T.BoxGeometry(804,740,500)),
 root.traverse(o=>{if(o.isMesh&&!(o.material&&o.material.isMeshBasicMaterial)){o.castShadow=true;}});
 root.traverse(o=>{if(o.userData.part)partObj[o.userData.part]=o;});
 
-/* ---------- fila atrás do gabinete: Mordecai, Rigby, Musculoso e Fantasmão ---------- */
-function fig(x,z,y){const g=new T.Group();g.position.set(x,y||0,z);scene.add(g);return g;}
-function P3(par,geo,m,x,y,z,sx,sy,sz){const o=new T.Mesh(geo,m);o.position.set(x,y,z);if(sx)o.scale.set(sx,sy,sz);o.castShadow=true;par.add(o);return o;}
-const sph=r=>new T.SphereGeometry(r,32,20),cy=(r1,r2,h)=>new T.CylinderGeometry(r1,r2,h,24),cone=(r,h)=>new T.ConeGeometry(r,h,24);
-function eyes(par,y,z,dx,r){[-dx,dx].forEach(x=>{P3(par,sph(r),mWhite,x,y,z);P3(par,sph(r*.38),mDark,x,y,z+r*.85);});}
-// Mordecai: gaio-azul alto
-(function(){const g=fig(520,-950),B=S({color:0x4f9be0,roughness:.55}),D=S({color:0x55575e,roughness:.6});
- [-70,70].forEach(x=>{P3(g,cy(16,16,560),D,x,280,0);P3(g,new T.BoxGeometry(70,20,120),D,x,10,40);});
- P3(g,cy(150,175,620),B,0,860,0);P3(g,sph(110),mWhite,0,860,110,.95,2.4,.5);
- [-1,1].forEach(k=>{const a=P3(g,cy(30,26,520),B,k*190,880,0);a.rotation.z=k*.18;});
- P3(g,sph(175),B,0,1400,0,1,1.15,1);P3(g,cone(55,150),D,0,1360,210).rotation.x=PI/2;
- eyes(g,1440,120,58,48);
- [[0,1640,-30,.1],[-50,1615,-70,-.5],[50,1615,-70,.5]].forEach(([x,y,z,a])=>{const c=P3(g,cone(40,170),B,x,y,z);c.rotation.set(-.5,0,a);});
- P3(g,new T.BoxGeometry(140,40,200),S({color:0x2f5f9a}),0,620,-170).rotation.x=-.5;})();
-// Rigby: guaxinim baixinho
-(function(){const g=fig(520,-1450),Br=S({color:0x8a5a33,roughness:.7}),Lt=S({color:0xc49a6c,roughness:.7});
- [-70,70].forEach(x=>P3(g,cy(40,40,200),Br,x,100,0));
- P3(g,sph(200),Br,0,400,0,1,1.25,.9);P3(g,sph(120),Lt,0,400,120,1,1.4,.5);
- [-1,1].forEach(k=>{const a=P3(g,cy(30,26,260),Br,k*200,430,0);a.rotation.z=k*.3;});
- P3(g,sph(190),Br,0,800,0);
- [-1,1].forEach(k=>{P3(g,sph(70),mRubber,k*70,820,140,1.1,.75,.5);P3(g,cone(55,110),Br,k*120,990,0).rotation.z=-k*.35;});
- eyes(g,825,170,70,30);P3(g,sph(70),Lt,0,740,160,1,.8,1);P3(g,sph(22),mDark,0,760,225);
- for(let i=0;i<6;i++){const c=P3(g,cy(70,70,70),i%2?mRubber:Br,0,260+i*60,-230-i*35);c.rotation.x=-.5;}})();
-// Musculoso: baixo e fortão, de calça jeans
-(function(){const g=fig(520,-1950),Sk=S({color:0x9cc27e,roughness:.6}),J=S({color:0x34508a,roughness:.8});
- [-100,100].forEach(x=>{P3(g,cy(85,75,520),J,x,260,0);P3(g,new T.BoxGeometry(110,40,180),mRubber,x,20,40);});
- P3(g,cy(250,250,90),J,0,560,0);P3(g,new T.TorusGeometry(250,14,10,48),S({color:0x5a3a1e}),0,600,0).rotation.x=PI/2;
- P3(g,sph(320),Sk,0,880,20,1,1,.9);
- [-1,1].forEach(k=>{const a=P3(g,cy(70,60,480),Sk,k*330,860,0);a.rotation.z=k*.35;P3(g,sph(70),Sk,k*400,640,0);});
- P3(g,sph(160),Sk,0,1310,30,1,1.05,1);eyes(g,1350,170,50,22);
- P3(g,new T.BoxGeometry(150,40,30),mDark,0,1250,180);P3(g,new T.BoxGeometry(130,12,32),mWhite,0,1262,182);})();
-// Fantasmão: fantasma branco flutuando, com a mão no topo da cabeça
-const ghost=fig(520,-2450,300);
-(function(){const g=ghost,W=S({color:0xf4f6fb,roughness:.4,emissive:0x1a1c22});
- P3(g,sph(230),W,0,900,0,1,1.1,1);P3(g,cy(230,250,520),W,0,600,0);
- for(let i=0;i<6;i++){const a=i/6*PI*2;P3(g,cone(80,160),W,Math.cos(a)*170,280,Math.sin(a)*170).rotation.x=PI;}
- eyes(g,960,200,70,34);P3(g,sph(40),mDark,0,840,215,1.4,.6,.5);
- const hand=new T.Group();hand.position.set(0,1180,0);g.add(hand);P3(hand,cy(45,55,120),W,0,0,0);P3(hand,sph(70),W,0,95,0,1,.8,.6);
- [-48,-24,0,24].forEach((x,i)=>P3(hand,cy(13,13,100),W,x,175,0).rotation.z=-x*.004);P3(hand,cy(13,13,80),W,70,110,0).rotation.z=-.9;})();
-
 /* ---------- cotas ---------- */
 const dims=[
  {a:[-520,0,650],b:[-520,1750,650],t:'1750',k:[60,0,0]},
@@ -735,7 +695,7 @@ function frame(now){size();const dt=Math.min(.1,(now-last)/1000||0);last=now;
  if(G.on){G.acc+=dt;let n=0;while(G.on&&G.acc>=1/60&&n++<6){G.acc-=1/60;tick();}if(G.on){drawGame();const k=G.keys;stick.rotation.z=-(k.r-k.l)*.3;stick.rotation.x=(k.d-k.u)*.3;capA.position.y=capS.position.y=k.j?-6:0;capB.position.y=k.b?-6:0;arm.rotation.x=G.mode==='slot'&&G.slot.pull>0?1.05*Math.sin((1-G.slot.pull/50)*PI):0;}}
  if(fly){let p=Math.min(1,(now-fly.s)/700);const k=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;camera.position.lerpVectors(fly.p0,fly.p1,k);controls.target.lerpVectors(fly.t0,fly.t1,k);if(p>=1)fly=null;}
  if(run){const p=Math.min(1,(now-run.s)/run.a.d);if(run.a.raw)run.a.raw(p);else run.a.f(Math.sin(p*PI));if(p>=1){if(run.a.raw)run.a.raw(1);else run.a.f(0);run=null;}}
- skyTick(dt);ghost.position.y=300+Math.sin(now*.002)*40;starsA.rotation.y+=dt*.006;starsB.rotation.y+=dt*.006;starsB.material.opacity=.6+.4*Math.sin(now*.0025);controls.update();renderer.render(scene,camera);
+ skyTick(dt);starsA.rotation.y+=dt*.006;starsB.rotation.y+=dt*.006;starsB.material.opacity=.6+.4*Math.sin(now*.0025);controls.update();renderer.render(scene,camera);
  for(const p of P){const id=p[0],a=anchors[id],el=co[id];if(!showNum&&sel!==id){el.hidden=true;continue;}
   a.obj.getWorldPosition(v3);n3.copy(a.n).transformDirection(a.obj.matrixWorld);const f=n3.dot(c3.copy(camera.position).sub(v3))>0;
   v3.project(camera);if(v3.z>1){el.hidden=true;continue;}el.hidden=false;el.classList.toggle('back',!f);
