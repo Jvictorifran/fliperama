@@ -240,13 +240,13 @@ function anchor(id,par,x,y,z,nx,ny,nz){const o=new T.Object3D();o.position.set(x
 function hide(o){o.visible=false;internals.push(o);return o;}
 
 // laterais (perfil em z,y)
-const prof=[[0,0],[0,1200],[180,1750],[650,1750],[650,1500],[570,1480],[630,890],[900,850],[900,740],[400,740],[400,90],[380,90],[380,0]];
+const prof=[[0,0],[0,1200],[180,1750],[650,1750],[650,1500],[570,1480],[630,890],[900,850],[900,0]];
 const shp=new T.Shape();prof.forEach((p,i)=>i?shp.lineTo(p[0],p[1]):shp.moveTo(p[0],p[1]));shp.closePath();
 const sideGeo=new T.ExtrudeGeometry(shp,{depth:18,bevelEnabled:false});
 [420,-402].forEach(x=>{const m=new T.Mesh(sideGeo,[mBody,mEdge]);m.rotation.y=-PI/2;m.position.x=x;root.add(m);});
 // faixas diagonais nas laterais
 [[150,0xff3d7f],[192,0xff9a2e],[234,0xffd23f]].forEach(([y0,c])=>{
-  const s=new T.Shape();s.moveTo(398,y0);s.lineTo(398,y0+34);s.lineTo(2,y0+34+411);s.lineTo(2,y0+411);s.closePath();
+  const s=new T.Shape();s.moveTo(518,y0);s.lineTo(518,y0+34);s.lineTo(2,y0+34+535);s.lineTo(2,y0+535);s.closePath();
   const g=new T.ShapeGeometry(s),mm=new T.MeshStandardMaterial({color:c,side:T.DoubleSide,roughness:.5});
   [420.8,-420.8].forEach(x=>{const m=new T.Mesh(g,mm);m.rotation.y=-PI/2;m.position.x=x;root.add(m);});
 });
@@ -434,6 +434,7 @@ const dims=[
  {a:[-520,0,650],b:[-520,1750,650],t:'1750',k:[60,0,0]},
  {a:[-420,2,1000],b:[420,2,1000],t:'840',k:[0,0,60]},
  {a:[-540,2,0],b:[-540,2,900],t:'900',k:[60,0,0]},
+ {a:[-402,2,930],b:[402,2,930],t:'800',k:[0,0,40]},
  {a:[-455,0,915],b:[-455,850,915],t:'850',k:[40,0,0]},
  {a:[-250,0,905],b:[-250,740,905],t:'740',k:[40,0,0]},
  {a:[200,2,400],b:[200,2,900],t:'500',k:[40,0,0]}
